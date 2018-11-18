@@ -74,16 +74,14 @@ func infixToPostfix(infix string) string {
 
 func infixToPrefix(infix string) string {
 	infix = reverseString(infix)
+
 	binfix := []byte(infix)
 	// Replace ( with ) and vice versa
 	for i := 0; i < len(infix); i++ {
-
 		if binfix[i] == '(' {
 			binfix[i] = ')'
-			i++
 		} else if binfix[i] == ')' {
 			binfix[i] = '('
-			i++
 		}
 	}
 	infix = string(binfix)
@@ -105,7 +103,8 @@ func reverseString(s string) string {
 }
 
 func main() {
-	var s string = ("(a-b/c)*(a/k-l)")
+	var s string
+	s = "(((A*B)*(C*D))*((E*F)+(G*H)))*(((I*J)*(K*L))*((N*M)*(O*P)))"
 	output := infixToPrefix(s)
 
 	fmt.Println(output)
