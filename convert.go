@@ -1,8 +1,6 @@
 package prefix
 
 import (
-	"fmt"
-
 	"github.com/golang-collections/collections/stack"
 )
 
@@ -26,9 +24,8 @@ func getPriority(s rune) int {
 	return 0
 }
 
-func Infix2Prefix(infix string) string {
+func infix2Postfix(infix string) string {
 	infix = "(" + infix + ")"
-	fmt.Println(infix)
 	charStack := stack.New()
 	var output string
 	// (l-k/a)*(c/b-a)
@@ -72,7 +69,7 @@ func Infix2Prefix(infix string) string {
 	return output
 }
 
-func infixToPrefix(infix string) string {
+func Infix2Prefix(infix string) string {
 	infix = reverseString(infix)
 
 	binfix := []byte(infix)
@@ -86,7 +83,8 @@ func infixToPrefix(infix string) string {
 	}
 	infix = string(binfix)
 
-	var prefix string = infixToPostfix(infix)
+	var prefix string
+	prefix = infix2Postfix(infix)
 
 	// Reverse postfix
 	prefix = reverseString(prefix)
