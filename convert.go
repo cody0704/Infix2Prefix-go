@@ -1,4 +1,4 @@
-package main
+package prefix
 
 import (
 	"fmt"
@@ -26,12 +26,11 @@ func getPriority(s rune) int {
 	return 0
 }
 
-func infixToPostfix(infix string) string {
+func Infix2Prefix(infix string) string {
 	infix = "(" + infix + ")"
-
+	fmt.Println(infix)
 	charStack := stack.New()
 	var output string
-
 	// (l-k/a)*(c/b-a)
 	for _, value := range infix {
 
@@ -56,6 +55,7 @@ func infixToPostfix(infix string) string {
 					for {
 						if getPriority(value) <= getPriority(rune(charStack.Peek().(string)[0])) {
 							output += charStack.Peek().(string)
+
 							charStack.Pop()
 						} else {
 							break
@@ -100,12 +100,4 @@ func reverseString(s string) string {
 		runes[from], runes[to] = runes[to], runes[from]
 	}
 	return string(runes)
-}
-
-func main() {
-	var s string
-	s = "(((A*B)*(C*D))*((E*F)+(G*H)))*(((I*J)*(K*L))*((N*M)*(O*P)))"
-	output := infixToPrefix(s)
-
-	fmt.Println(output)
 }
