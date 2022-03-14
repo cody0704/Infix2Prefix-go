@@ -1,4 +1,4 @@
-# InfixToPrefix-go
+# Infix2Prefix
 
 Convert C/C++ program to Golang code
 
